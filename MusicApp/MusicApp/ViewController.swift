@@ -37,9 +37,9 @@ class ViewController: BaseViewController {
         joinButton.translatesAutoresizingMaskIntoConstraints = false
         
         logoLabel = UILabel()
-        logoLabel.text = "LOGO"
+        logoLabel.text = "Musiqueue"
         logoLabel.textColor = .white
-        logoLabel.font = .boldSystemFont(ofSize: 80 )
+        logoLabel.font = .boldSystemFont(ofSize: 65 )
         logoLabel.numberOfLines = 0
         logoLabel.textAlignment = .center
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
