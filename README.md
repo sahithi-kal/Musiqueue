@@ -1,2 +1,2 @@
 # Musiqueue
-![](demo.gif)
+![](demo.gif | width=100)
