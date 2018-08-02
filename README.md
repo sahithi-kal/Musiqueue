@@ -1,2 +1,2 @@
 # Musiqueue
-<img src = "demo.gif" | width="100")
+<img src = "demo.gif" | width="100">
