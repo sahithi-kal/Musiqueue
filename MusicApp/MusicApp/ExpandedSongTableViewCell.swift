@@ -142,7 +142,7 @@ class ExpandedSongTableViewCell: UITableViewCell {
             ])
     
         NSLayoutConstraint.activate([
-            scoreLabel.centerXAnchor.constraint(equalTo: upButton.centerXAnchor),
+            scoreLabel.centerXAnchor.constraint(equalTo: songInfoButton.centerXAnchor),
             scoreLabel.topAnchor.constraint(equalTo:upButton.bottomAnchor),
             scoreLabel.widthAnchor.constraint(equalToConstant: scoreLabel.intrinsicContentSize.width)
             ])

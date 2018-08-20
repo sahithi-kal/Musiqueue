@@ -18,7 +18,7 @@ class ViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let topColor = UIColor(red: 75/255, green: 79/255, blue: 131/255, alpha: 1.0)
+        let topColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
 //        let bottomColor = UIColor(red: 80/255, green: 157/255, blue: 180/255, alpha: 1.0)
 
         
@@ -27,6 +27,11 @@ class ViewController: BaseViewController {
         createButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
         createButton.backgroundColor = topColor
         createButton.addTarget(self, action: #selector(createButtonPressed), for: .touchUpInside)
+        createButton.layer.borderWidth = 1.0
+        createButton.layer.borderColor = UIColor.white.cgColor
+        createButton.layer.cornerRadius = 5.0
+        createButton.clipsToBounds = true
+        createButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         createButton.translatesAutoresizingMaskIntoConstraints = false
         
         joinButton = UIButton(type: UIButtonType.custom)
@@ -34,6 +39,11 @@ class ViewController: BaseViewController {
         joinButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
         joinButton.backgroundColor = topColor
         joinButton.addTarget(self, action: #selector(joinButtonPressed), for: .touchUpInside)
+        joinButton.layer.borderWidth = 1.0
+        joinButton.layer.borderColor = UIColor.white.cgColor
+        joinButton.layer.cornerRadius = 5.0
+        joinButton.clipsToBounds = true
+        joinButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         joinButton.translatesAutoresizingMaskIntoConstraints = false
         
         logoLabel = UILabel()

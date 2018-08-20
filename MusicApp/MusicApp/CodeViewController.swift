@@ -10,7 +10,7 @@ import UIKit
 
 class CodeViewController: BaseViewController {
     
-    let topColor = UIColor(red: 75/255, green: 79/255, blue: 131/255, alpha: 1.0)
+    let topColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
     
     var isHost : Bool!
     var codeLabel : UILabel!
@@ -73,6 +73,11 @@ class CodeViewController: BaseViewController {
         nextButton.titleLabel?.font = .boldSystemFont(ofSize: 30)
         nextButton.backgroundColor = topColor
         nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
+        nextButton.layer.borderWidth = 1.0
+        nextButton.layer.borderColor = UIColor.white.cgColor
+        nextButton.layer.cornerRadius = 5.0
+        nextButton.clipsToBounds = true
+        nextButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         
         

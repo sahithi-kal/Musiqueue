@@ -13,7 +13,7 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
 //    var selectedRowIndex = -1
 //    var cellTapped = false
 
-    let topColor = UIColor(red: 75/255, green: 79/255, blue: 131/255, alpha: 1.0)
+    let topColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
     //        let bottomColor = UIColor(red: 80/255, green: 157/255, blue: 180/255, alpha: 1.0)
     
     let song1 = Song(songName: "Hello", artistName: "Adele", albumName: "Adele", image: #imageLiteral(resourceName: "Hello"))

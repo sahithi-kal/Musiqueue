@@ -20,8 +20,12 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.tintColor = .white
         
-        let topColor = UIColor(red: 75/255, green: 79/255, blue: 131/255, alpha: 1.0)
-        let bottomColor = UIColor(red: 80/255, green: 157/255, blue: 180/255, alpha: 1.0)
+//        let topColor = UIColor(red: 75/255, green: 79/255, blue: 131/255, alpha: 1.0)
+//        let bottomColor = UIColor(red: 80/255, green: 157/255, blue: 180/255, alpha: 1.0)
+        
+        
+        let bottomColor = UIColor(red: 52/255, green: 12/255, blue: 83/255, alpha: 1.0)
+        let topColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
         
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
