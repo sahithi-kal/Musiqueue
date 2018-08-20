@@ -22,10 +22,6 @@ class CodeViewController: BaseViewController {
         self.isHost = isHost
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,6 +115,7 @@ class CodeViewController: BaseViewController {
         
     }
     
+    // when next button is pressed and a valid party key has been entered, user is taken to playlist screen
     @objc func nextButtonPressed(sender: UIButton){
         if let partyKey = codeTextField.text{
             if partyKey == "" {
@@ -136,20 +133,8 @@ class CodeViewController: BaseViewController {
     
     
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

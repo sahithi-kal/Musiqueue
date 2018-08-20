@@ -1,4 +1,5 @@
 //
+//  Sets up background gradient for all view controllers
 //  BaseViewController.swift
 //  MusicApp
 //
@@ -15,14 +16,11 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //set up and add gradient to screen
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.tintColor = .white
-        
-//        let topColor = UIColor(red: 75/255, green: 79/255, blue: 131/255, alpha: 1.0)
-//        let bottomColor = UIColor(red: 80/255, green: 157/255, blue: 180/255, alpha: 1.0)
-        
         
         let bottomColor = UIColor(red: 52/255, green: 12/255, blue: 83/255, alpha: 1.0)
         let topColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
@@ -33,21 +31,5 @@ class BaseViewController: UIViewController {
         view.layer.insertSublayer(gradientLayer, at: 0)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

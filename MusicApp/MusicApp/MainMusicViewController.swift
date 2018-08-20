@@ -9,13 +9,10 @@
 import UIKit
 
 class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource{
-    
-//    var selectedRowIndex = -1
-//    var cellTapped = false
 
-    let topColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
-    //        let bottomColor = UIColor(red: 80/255, green: 157/255, blue: 180/255, alpha: 1.0)
+    let buttonColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
     
+    //hardcoded song data
     let song1 = Song(songName: "Hello", artistName: "Adele", albumName: "Adele", image: #imageLiteral(resourceName: "Hello"))
     let song2 = Song(songName: "Empty Cups", artistName: "Charlie Puth", albumName: "Voice Notes", image: #imageLiteral(resourceName: "voicenotes"))
     let song3 = Song(songName: "Somebody Told Me That You Got Another", artistName: "Charlie Puth", albumName: "Voice Notes", image: #imageLiteral(resourceName: "voicenotes"))
@@ -26,31 +23,30 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
      let song8 = Song(songName: "Slow It down", artistName: "Charlie Puth", albumName: "Voice Notes", image: #imageLiteral(resourceName: "voicenotes"))
     let song9 = Song(songName: "All Too Well", artistName: "Taylor Swift", albumName: "Red", image: #imageLiteral(resourceName: "red"))
 
-    
-    
-    
+    //playlist of songs
     var songList : [Song] = []
     
-//    var selectedSong = Song(songName: "Slow It Down", artistName: "Charlie Puth", albumName: "Voice Notes", image: #imageLiteral(resourceName: "voicenotes"))
-    var selectedSong = Song(songName: "New Year's Day", artistName: "Taylor Swift", albumName: "Reputation", image: #imageLiteral(resourceName: "reputation"))
-    var selectedSongImage : UIImageView!
-    var smallSelectedSongImage : UIImageView!
+    var selectedSong = Song(songName: "New Year's Day", artistName: "Taylor Swift", albumName: "Reputation", image: #imageLiteral(resourceName: "reputation"))  //hardcoded currently selected song
+    var selectedSongImage : UIImageView! //blurred imageView for selected song
+    var smallSelectedSongImage : UIImageView! //clear mini imageView for selected song
     
     var tableView : UITableView!
     
-    var rightButton : UIBarButtonItem!
+    var rightButton : UIBarButtonItem!  //right bar button: "edit" for hosts (allows playlist editing) and "+" for attendees (adds songs to playlist)
     
-    var partyKeyLabel : UILabel!
+    var partyKeyLabel : UILabel!    //specifies party entrance code
     
-    var shapeLayer : CAShapeLayer!
+    var shapeLayer : CAShapeLayer!  //shapeLayer for music progress bar
+    
     var currentSongLabel : UILabel!
     var currentArtistLabel : UILabel!
     
-    var currentInfoButton : UIButton!
+    var currentInfoButton : UIButton!   //info button for currently playing song
     
-    var isHost : Bool!
-    var partyKey : String!
+    var isHost : Bool!  //true if user is host, false otherwise
+    var partyKey : String!  //string with party entrance code
     
+    //initializes Main Music View Controller with whether user is host (isHost) and party entrance code (partyKey)
     init(isHost : Bool, partyKey : String){
         self.isHost = isHost
         self.partyKey = partyKey
@@ -64,6 +60,7 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //add hardcoded songs to playlist
         songList.append(song1)
         songList.append(song2)
         songList.append(song3)
@@ -74,6 +71,7 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
         songList.append(song8)
         songList.append(song9)
         
+        //set up tableview for playlist
         tableView = UITableView()
         tableView.bounces = true
         tableView.dataSource = self
@@ -84,6 +82,7 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
         tableView.allowsMultipleSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        //set up right navigation bar button: "Edit" if user is host or "+" if user is event attendee
         if isHost {
             rightButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editDoneButtonPressed))
             navigationItem.rightBarButtonItem = rightButton
@@ -93,6 +92,7 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
             navigationItem.rightBarButtonItem = rightButton
         }
         
+        //set up party key label
         partyKeyLabel = UILabel()
         if let key = partyKey {
             partyKeyLabel.text = "Party Key : \(key)"
@@ -102,16 +102,18 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
         partyKeyLabel.alpha = 0.5
         partyKeyLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        
+        //set up clear mini image of current song
         smallSelectedSongImage = UIImageView(image: selectedSong.image)
         smallSelectedSongImage.layer.masksToBounds = true
         smallSelectedSongImage.layer.cornerRadius = 115
         smallSelectedSongImage.translatesAutoresizingMaskIntoConstraints = false
         
+        //set up blurred, large selected song image of current song
         selectedSongImage = UIImageView(image: blurImage(image: selectedSong.image))
         selectedSongImage.alpha = 0.50
         selectedSongImage.translatesAutoresizingMaskIntoConstraints = false
         
+        //create and setup current song's progress bar
         shapeLayer = CAShapeLayer()
         let center = CGPoint(x: view.frame.width/2, y: (6*view.frame.width)/14)
         
@@ -126,17 +128,14 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = kCALineCapRound
         
-
-
-//        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
-        
+        //set up current song's name label
         currentSongLabel = UILabel()
         currentSongLabel.textColor = .white
         currentSongLabel.text = selectedSong.songName
         currentSongLabel.font = .systemFont(ofSize: 35)
-//        currentSongLabel.alpha = 0.5
         currentSongLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        //set up current song's artist label
         currentArtistLabel = UILabel()
         currentArtistLabel.textColor = .white
         currentArtistLabel.text = selectedSong.artistName
@@ -144,6 +143,7 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
         currentArtistLabel.alpha = 0.5
         currentArtistLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        //set up current song's info button
         currentInfoButton = UIButton(type: .infoLight)
         currentInfoButton.tintColor = .white
         currentInfoButton.translatesAutoresizingMaskIntoConstraints = false
@@ -160,13 +160,12 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
         view.bringSubview(toFront: currentArtistLabel)
         view.bringSubview(toFront: currentSongLabel)
         setupConstraints()
-        handleTap()
-        
+        songProgressStarts()
 
-        // Do any additional setup after loading the view.
     }
     
-    @objc private func handleTap() {
+    //starts current songs progress bar and ends when song has ended
+    @objc private func songProgressStarts() {
         print("Attempting to animate stroke")
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
@@ -178,6 +177,7 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
         shapeLayer.add(basicAnimation, forKey: "pathAnimation")
     }
     
+    //blurs background image of selected song
     func blurImage(image:UIImage) -> UIImage? {
         let context = CIContext(options: nil)
         let inputImage = CIImage(image: image)
@@ -204,36 +204,43 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
         return nil
     }
     
+    //set layout of view controller
     func setupConstraints(){
         
+        //selected song image layout
         NSLayoutConstraint.activate([
             selectedSongImage.topAnchor.constraint(equalTo: view.topAnchor),
             selectedSongImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             selectedSongImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             selectedSongImage.heightAnchor.constraint(equalToConstant: view.frame.width)])
         
+        //current song name label layout
         NSLayoutConstraint.activate([
             currentSongLabel.centerXAnchor.constraint(equalTo: selectedSongImage.centerXAnchor),
             currentSongLabel.topAnchor.constraint(equalTo: smallSelectedSongImage.bottomAnchor, constant: 16),
             currentSongLabel.widthAnchor.constraint(equalToConstant: currentSongLabel.intrinsicContentSize.width)])
         
+        //current song artist name layout
         NSLayoutConstraint.activate([
             currentArtistLabel.centerXAnchor.constraint(equalTo: selectedSongImage.centerXAnchor),
             currentArtistLabel.topAnchor.constraint(equalTo: currentSongLabel.bottomAnchor),
             currentArtistLabel.widthAnchor.constraint(equalToConstant: currentArtistLabel.intrinsicContentSize.width)])
         
+        //small selected song image layout
         NSLayoutConstraint.activate([
             smallSelectedSongImage.centerXAnchor.constraint(equalTo: selectedSongImage.centerXAnchor),
             smallSelectedSongImage.centerYAnchor.constraint(equalTo: selectedSongImage.centerYAnchor, constant: -view.frame.width/14),
             smallSelectedSongImage.heightAnchor.constraint(equalToConstant: view.frame.width/1.65),
             smallSelectedSongImage.widthAnchor.constraint(equalToConstant: view.frame.width/1.65)])
         
+        //tableview layout
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: selectedSongImage.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
         
+        //current song info button layout
         NSLayoutConstraint.activate([
             currentInfoButton.bottomAnchor.constraint(equalTo: selectedSongImage.bottomAnchor, constant: -12),
             currentInfoButton.trailingAnchor.constraint(equalTo: selectedSongImage.trailingAnchor, constant: -12)])
@@ -241,11 +248,13 @@ class MainMusicViewController: BaseViewController, UITableViewDelegate, UITableV
 
     }
     
+    //when host presses "edit" button, editing mode starts, allowing him/her to move and delete elements in the playlist
     @objc func editDoneButtonPressed(sender: UIBarButtonItem){
         tableView.setEditing(!tableView.isEditing, animated: true)
         sender.title = (tableView.isEditing) ? "Done" : "Edit"
     }
     
+    //when an event attendee presses the "+" button, he/she goes to a search controller screen to search for and add a song
     @objc func addButtonPressed(sender: UIBarButtonItem){
         
     }

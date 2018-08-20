@@ -1,4 +1,5 @@
 //
+//  Home Screen that user first sees
 //  ViewController.swift
 //  MusicApp
 //
@@ -10,22 +11,21 @@ import UIKit
 
 class ViewController: BaseViewController {
     
-//    var gradientLayer : CAGradientLayer!
-    var joinButton : UIButton!
-    var createButton : UIButton!
-    var logoLabel : UILabel!
+    var joinButton : UIButton! //button to join a party
+    var createButton : UIButton! //button to create a party
+    var logoLabel : UILabel!  //label for logo
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let topColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
-//        let bottomColor = UIColor(red: 80/255, green: 157/255, blue: 180/255, alpha: 1.0)
+        //set button color
+        let buttonColor = UIColor(red: 8/255, green: 8/255, blue: 10/255, alpha: 1.0)
 
-        
+        //set up buttons
         createButton = UIButton(type: UIButtonType.custom)
         createButton.setTitle("CREATE A PARTY", for: .normal)
         createButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        createButton.backgroundColor = topColor
+        createButton.backgroundColor = buttonColor
         createButton.addTarget(self, action: #selector(createButtonPressed), for: .touchUpInside)
         createButton.layer.borderWidth = 1.0
         createButton.layer.borderColor = UIColor.white.cgColor
@@ -37,7 +37,7 @@ class ViewController: BaseViewController {
         joinButton = UIButton(type: UIButtonType.custom)
         joinButton.setTitle("JOIN A PARTY", for: .normal)
         joinButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        joinButton.backgroundColor = topColor
+        joinButton.backgroundColor = buttonColor
         joinButton.addTarget(self, action: #selector(joinButtonPressed), for: .touchUpInside)
         joinButton.layer.borderWidth = 1.0
         joinButton.layer.borderColor = UIColor.white.cgColor
@@ -46,6 +46,7 @@ class ViewController: BaseViewController {
         joinButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         joinButton.translatesAutoresizingMaskIntoConstraints = false
         
+        //set up logo
         logoLabel = UILabel()
         logoLabel.text = "Musiqueue"
         logoLabel.textColor = .white
@@ -59,34 +60,13 @@ class ViewController: BaseViewController {
         view.addSubview(createButton)
         view.addSubview(logoLabel)
         setupConstraints()
-        
-        
-        
-        
-        
-//        let topColor = UIColor(red: 75/255, green: 79/255, blue: 131/255, alpha: 0.75)
-//        let bottomColor = UIColor(red: 80/255, green: 157/255, blue: 180/255, alpha: 0.75)
-//
-//        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-//        backgroundImage.image = UIImage(named: "dancingGirl")
-//        gradientLayer = CAGradientLayer()
-//        gradientLayer.frame = backgroundImage.bounds
-//        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-//        backgroundImage.layer.insertSublayer(gradientLayer, at: 0)
-////        let gradient = CAGradientLayer()
-////        gradient.frame = view.frame
-////        gradient.colors = [topColor.cgColor, bottomColor.cgColor]
-////        gradient.locations = [0.0, 1.0]
-////        view.layer.insertSublayer(gradient, at: 0)
-////        backgroundImage.addSubview(view)
-//
-//        self.view.insertSubview(backgroundImage, at: 0)
 
     }
     
+    //set layout of view controller
     func setupConstraints() {
         
-        //join button label
+        //create button layout
         NSLayoutConstraint.activate([
             createButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             createButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -createButton.intrinsicContentSize.height * 2),
@@ -94,7 +74,7 @@ class ViewController: BaseViewController {
             createButton.heightAnchor.constraint(equalToConstant: 50)
             ])
         
-        //join button label
+        //join button layout
         NSLayoutConstraint.activate([
             joinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             joinButton.bottomAnchor.constraint(equalTo: createButton.topAnchor, constant: -32),
@@ -102,6 +82,7 @@ class ViewController: BaseViewController {
             joinButton.heightAnchor.constraint(equalToConstant: 50)
             ])
         
+        //logo label layout
         NSLayoutConstraint.activate([
             logoLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             logoLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -50),
@@ -110,22 +91,18 @@ class ViewController: BaseViewController {
         
     }
     
+    //when create button is pressed, "Enter Party Code" screen appears
     @objc func createButtonPressed(sender: UIButton){
         let codeVC = CodeViewController(isHost: true)
         navigationController?.pushViewController(codeVC, animated: true)
     }
     
+    //wehn join button is pressed, "Create a Party Code" screen appears
     @objc func joinButtonPressed(sender: UIButton){
         let codeVC = CodeViewController(isHost: false)
         navigationController?.pushViewController(codeVC, animated: true)
     }
-    
-    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 
 }

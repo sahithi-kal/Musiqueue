@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37174CC6212A6A0A0072929F /* SearchSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37174CC5212A6A0A0072929F /* SearchSongViewController.swift */; };
 		372A036A20F311C700ECC198 /* example.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 372A036920F311C700ECC198 /* example.mp3 */; };
 		3781B0DD20ED2565001B1DB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B0DC20ED2565001B1DB9 /* AppDelegate.swift */; };
 		3781B0DF20ED2565001B1DB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B0DE20ED2565001B1DB9 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37174CC5212A6A0A0072929F /* SearchSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSongViewController.swift; sourceTree = "<group>"; };
 		372A036920F311C700ECC198 /* example.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = example.mp3; sourceTree = "<group>"; };
 		3781B0D920ED2565001B1DB9 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3781B0DC20ED2565001B1DB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			children = (
 				3781B0DC20ED2565001B1DB9 /* AppDelegate.swift */,
 				37AEAF6220F023EA00461670 /* BaseViewController.swift */,
+				37174CC5212A6A0A0072929F /* SearchSongViewController.swift */,
 				3781B0DE20ED2565001B1DB9 /* ViewController.swift */,
 				37AEAF5A20F0149800461670 /* CodeViewController.swift */,
 				37AEAF6420F06AEF00461670 /* MainMusicViewController.swift */,
@@ -169,6 +172,7 @@
 				37AEAF6320F023EA00461670 /* BaseViewController.swift in Sources */,
 				37AEAF5B20F0149800461670 /* CodeViewController.swift in Sources */,
 				37AEAF6520F06AEF00461670 /* MainMusicViewController.swift in Sources */,
+				37174CC6212A6A0A0072929F /* SearchSongViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
